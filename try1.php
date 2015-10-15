@@ -6,10 +6,8 @@ include("config_db.php");
 <html>
 <body>
 
-<table width="650" height="561"  border="0" align="center" cellpadding="1" cellspacing="1" >
+<table width="800" height="561"  border="0" align="center" cellpadding="1" cellspacing="1" >
     <tr>
-          
-            <td>Faculty Name:</td>
           <td><label>
             <?php
 			
@@ -40,7 +38,7 @@ include("config_db.php");
 		  </tr>
 		  </thead>
 		  <?php
-		  	$sql_que="select * from questionares";
+		  	$sql_que="select * from question";
 			$res_que=mysql_query($sql_que) or die(mysql_error());
 			$i=1;
 			$tab_ind=7;
@@ -48,12 +46,13 @@ include("config_db.php");
 			{
 				echo "<tr>";
 				echo "<td align=\"center\">".$i."</td>";
-				echo "<td>".$row_que['ques']."</td>";
-				echo "<td> <input type=\"checkbox\" name=\"ans_$i\" </td>";
-				echo "<td> <input type=\"checkbox\" name=\"ans_$i\" </td>";
-				echo "<td> <input type=\"checkbox\" name=\"ans_$i\" </td>";
-				echo "<td> <input type=\"checkbox\" name=\"ans_$i\"</td>";
-				echo "<td> <input type=\"checkbox\" name=\"ans_$i\"</td>";
+				echo "<td>".$row_que['Q_name']."</td>";
+				echo "<td> <input type=\"radio\" name=\"updateField\" value=\"name\" /> </td>";
+								echo "<td> <input type=\"radio\" name=\"updateField\" value=\"name\" /> </td>";
+					echo "<td> <input type=\"radio\" name=\"updateField\" value=\"name\" /> </td>";
+					echo "<td> <input type=\"radio\" name=\"updateField\" value=\"name\" /> </td>";
+					echo "<td> <input type=\"radio\" name=\"updateField\" value=\"name\" /> </td>";
+	
 								
 					echo "</tr>";$i++;
 			}
