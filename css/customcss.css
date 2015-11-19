@@ -1,0 +1,10 @@
+ul.option-list {
+	padding: 0;
+	margin: 0;
+}
+
+ul.option-list li {
+	list-style-type: none;
+	float: left;
+	margin-right: 10px;
+}

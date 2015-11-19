@@ -8,6 +8,4 @@ $conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to my
 
 $dbname = 'evaluation';
 mysql_select_db($dbname) or die("database not available");
-
-
 ?>

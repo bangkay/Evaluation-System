@@ -40,7 +40,7 @@
 <td><div align="center"></div></td>
 <td>
   <div align="left">
-    <input type="submit" class="button" name="Submit" value="Login">
+    <input type="submit" class="button" name="Submit" value="Login" >
   </div></td>
 </tr>
 </table>
