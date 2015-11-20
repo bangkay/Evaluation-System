@@ -18,7 +18,7 @@
                     <ul class="dropdown-menu">  
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="UserLogout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -29,11 +29,9 @@
                     <li>
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
-                  
                     <li>
                         <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
                     </li>
-              
                     <li class= "dropdown">
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Evaluation Result<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
@@ -47,10 +45,16 @@
                                 <a href="#">Dean</a>
                             </li>
                         </ul>
-							 <li>
-								<a href="questions.php"><i class="fa fa-fw fa-table"></i> Questions</a>
-							</li>
-                    </li>     
+                    </li>
+					<li>
+						<a href="questions.php"><i class="fa fa-fw fa-table"></i> Questions</a>
+					</li>
+					<li>
+						<a href="department.php"><i class="fa fa-fw fa-table"></i> Department</a>
+					</li>
+					<li>
+						<a href="faculty.php"><i class="fa fa-fw fa-table"></i> Faculty</a>
+					</li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

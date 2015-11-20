@@ -14,6 +14,8 @@
 	<script src="js/jquery-1.11.3.js"></script>
 	<script src="js/jquery-ui.js"></script>
 	<script src="js/questions.js"></script>
+	<script src="js/departments.js"></script>
+	<script src="js/faculty.js"></script>
 	
 	<!-- Custom CSS -->
 	<link href="css/customcss.css" rel="stylesheet">
