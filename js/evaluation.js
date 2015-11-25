@@ -1,41 +1,94 @@
 $(document).ready(function () {
+	var studId = 0;
+	var teacherId = 0;
 	var subId = 0;
 	var subName = "";
 	
-	$('#btnEvaluate').click(function () {
-		studId = $('#s_id').val();
-		
-		if (!$.isNumeric(studId)) {
-			alert("Invalid Student Id");
-		}
-		else {
-			getCurrentRecordForInstructors(studId);
-			getCurrentRecordForSubjects(studId);
-		}
-	});
+	studId = parseInt($('#txtStudId').val());
+	getCurrentRecordForInstructors(studId);
 	
-	/*
-	$('#drpSubj').change(function () {
-		var subId = $('#drpSubj').val();
+	$('#drpTeacher').change(function () {
+		$('#drpSubj').empty();
 		
-		$.ajax({
-				type: "GET",
-				url: "GetStudentCurrentInstructions.php",
-				data: { subject_id: subId },
-				dataType: "json",
-				success: function (result) {
-					$.each(result, function (index, value) {
-						$('<option value=' + value.Teacher_ID + '>' + value.Fname + '</option>').appendTo('#drpTeacher');
-					});
-				},
-				error: function (error) {
-					console.log(error);
-				}
-			});
+		teacherId = parseInt($('#drpTeacher').val());
+		
+		getCurrentRecordForSubjects(studId, teacherId);
 	});
-	*/
 	
 	$('#btnSubmit').click(function () {
+		// Get score per category
+		var count = 1;
+		var catIndex = $('#items').find('tr td p.category-header');
+		
+		var catRunningTotal = 0;
+		var average = 0;
+		
+		$.each(catIndex, function (index, value) {
+			var catItems = $('#items').find('tr.category_questions' + count);
+			
+			$.each(catItems, function (index, value) {
+				var $tds = $(this).find('td');
+				
+				var r5 = $tds.eq(2);
+				var r4 = $tds.eq(3);
+				var r3 = $tds.eq(4);
+				var r2 = $tds.eq(5);
+				var r1 = $tds.eq(6);
+				
+				var rb5 = $(r5).find('input[type=radio]');
+				var rb5Checked = $(rb5).is(':checked');
+				if (rb5Checked) {
+					catRunningTotal += parseInt(rb5.val());
+				}
+				else {
+					catRunningTotal += 0;
+				}
+				
+				var rb4 = $(r4).find('input[type=radio]');
+				var rb4Checked = $(rb4).is(':checked');
+				if (rb4Checked) {
+					catRunningTotal += parseInt(rb4.val());
+				}
+				else {
+					catRunningTotal += 0;
+				}
+				
+				var rb3 = $(r3).find('input[type=radio]');
+				var rb3Checked = $(rb3).is(':checked');
+				if (rb3Checked) {
+					catRunningTotal += parseInt(rb3.val());
+				}
+				else {
+					catRunningTotal += 0;
+				}
+				
+				var rb2 = $(r2).find('input[type=radio]');
+				var rb2Checked = $(rb2).is(':checked');
+				if (rb2Checked) {
+					catRunningTotal += parseInt(rb2.val());
+				}
+				else {
+					catRunningTotal += 0;
+				}
+				
+				var rb1 = $(r1).find('input[type=radio]');
+				var rb1Checked = $(rb1).is(':checked');
+				if (rb1Checked) {
+					catRunningTotal += parseInt(rb1.val());
+				}
+				else {
+					catRunningTotal += 0;
+				}
+			});
+			
+			average = catRunningTotal / count;
+			console.log(count + ' ' + average);
+			
+			count++;
+		});
+		
+		// Get Overall Evaluation Score
+		/*
 		var runningTotal = 0;
 		var remarks = "";
 		var temp = 0;
@@ -109,19 +162,25 @@ $(document).ready(function () {
 		else
 			remarks = "";
 		
+		var facultyId = teacherId;
+		var subjectId = $('#drpSubj').val();
+		var score = runningTotal;
+		
+		console.log(score + ' ' + remarks);
+		
 		$.ajax({
 			type: "POST",
-			url: "save_evaluation.php",
-			data: { score: runningTotal, remarks: remarks },
+			url: "SaveEvaluation.php",
+			data: { facultyId: facultyId, subjectId: subjectId, score: score, remarks: remarks },
 			success: function (result) {
-				console.log(result);
+				if (result[0].status == 1)
+					alert(result[0].message);
 			},
 			error: function (error) {
 				console.log(error);
 			}
-	
 		});
-		
+		*/
 	});	
 });
 
@@ -133,7 +192,7 @@ function getCurrentRecordForInstructors(student_id) {
 		dataType: "json",
 		success: function (result) {
 			$.each(result, function (index, value) {
-				getStudentCurrentInstructors(value.Faculty_Id);
+				$('<option value=' + value.Faculty_Id + '>' + value.Faculty_Name + '</option>').appendTo('#drpTeacher');
 			});
 		},
 		error: function (error) {
@@ -142,49 +201,15 @@ function getCurrentRecordForInstructors(student_id) {
 	});
 }
 
-function getStudentCurrentInstructors(instructor_id) {
-	$.ajax({
-		type: "GET",
-		url: "GetStudentCurrentInstructors.php",
-		data: { instructor_id: instructor_id },
-		dataType: "json",
-		success: function (result) {
-			$.each(result, function (index, value) {
-				$('<option value=' + value.Teacher_ID + '>' + value.Fname + '</option>').appendTo('#drpTeacher');
-			});
-		},
-		error: function (error) {
-			console.log(error);
-		}
-	});
-}
-
-function getCurrentRecordForSubjects(student_id) {
+function getCurrentRecordForSubjects(student_id, teacher_id) {
 	$.ajax({
 		type: "GET",
 		url: "GetStudentCurrentRecordForSubjects.php",
-		data: { student_id: student_id },
+		data: { student_id: student_id, teacher_id: teacher_id },
 		dataType: "json",
 		success: function (result) {
 			$.each(result, function (index, value) {
-				getStudentCurrentEnrolledSubjects(value.Subject_Id);
-			});
-		},
-		error: function (error) {
-			console.log(error);
-		}
-	});
-}
-
-function getStudentCurrentEnrolledSubjects(subject_id) {
-	$.ajax({
-		type: "GET",
-		url: "GetStudentCurrentEnrolledSubjects.php",
-		data: { subject_id: subject_id },
-		dataType: "json",
-		success: function (result) {
-			$.each(result, function (index, value) {
-				$('<option value=' + value.Subject_ID + '>' + value.Subject_Name + '</option>').appendTo('#drpSubj');
+				$('<option value=' + value.Subject_Id + '>' + value.Subject_Name + '</option>').appendTo('#drpSubj');
 			});
 		},
 		error: function (error) {

@@ -14,7 +14,7 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">       
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome ADMIN <b class="caret"></b></a>
                     <ul class="dropdown-menu">  
                         <li class="divider"></li>
                         <li>
@@ -27,27 +27,24 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Home</a>
+                        <a href="AdminDashboard.php"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
-                    <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
-                    </li>
+                    
                     <li class= "dropdown">
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Evaluation Result<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#">Student</a>
-                            </li>
-                            <li>
-                                <a href="#">Teacher</a>
-                            </li>
-							<li>
-                                <a href="#">Dean</a>
+                                <a href="teacherevaluation.php">Teacher</a>
                             </li>
                         </ul>
                     </li>
 					<li>
 						<a href="questions.php"><i class="fa fa-fw fa-table"></i> Questions</a>
+						<ul id="demo" class="collapse">
+                            <li>
+                                <a href="#">Category</a>
+                            </li>
+                        </ul>
 					</li>
 					<li>
 						<a href="department.php"><i class="fa fa-fw fa-table"></i> Department</a>
