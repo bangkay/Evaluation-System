@@ -13,7 +13,7 @@
 		 <div class="avatar"></div>  
 		   <div class="form-box">
                 <form  method="POST" action="AuthenticateStudentLogin.php">
-                    <input name="txtStudId" type="text" id="txtStudId" placeholder = "STUDENT ID" require autofocus > 
+                    <input name="txtStudId" type="text" id="txtStudId" placeholder="STUDENT ID" require autofocus /> 
                     <button class="btn btn-info btn-block login" type="submit">Login</button>
                 </form>
             </div>
