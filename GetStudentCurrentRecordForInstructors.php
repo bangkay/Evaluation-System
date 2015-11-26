@@ -9,7 +9,7 @@ $result = mysql_query($query);
 
 while ($row = mysql_fetch_array($result))
 {
-	$dataset = mysql_query("SELECT F_ID, F_Fullname FROM faculty WHERE F_ID = '".$row['F_ID']."'");
+	$dataset = mysql_query("SELECT F_ID, F_Fullname FROM faculty WHERE F_ID = '".$row['F_ID']."' ");
 	
 	while ($rows = mysql_fetch_array($dataset))
 	{

@@ -18,15 +18,18 @@ $(document).ready(function () {
 	$('#btnSubmit').click(function () {
 		// Get score per category
 		var count = 1;
-		var catIndex = $('#items').find('tr td p.category-header');
+		var subItemCount = 0;
+		var perCategoryRunningTotal = 0;
+		var perCategoryAverage = 0;
 		
-		var catRunningTotal = 0;
-		var average = 0;
+		var catHeaders = $('#items').find('tr td p.category-header');
 		
-		$.each(catIndex, function (index, value) {
-			var catItems = $('#items').find('tr.category_questions' + count);
+		$.each(catHeaders, function (index, value) {
+			var catSubItems = $('#items').find('tr.category_questions' + count);
+			subItemCount = 0;
+			perCategoryRunningTotal = 0;
 			
-			$.each(catItems, function (index, value) {
+			$.each(catSubItems, function (index, value) {
 				var $tds = $(this).find('td');
 				
 				var r5 = $tds.eq(2);
@@ -39,56 +42,79 @@ $(document).ready(function () {
 				var rb5Checked = $(rb5).is(':checked');
 				if (rb5Checked) {
 					catRunningTotal += parseInt(rb5.val());
+					perCategoryRunningTotal += parseInt(rb5.val());
 				}
 				else {
 					catRunningTotal += 0;
+					perCategoryRunningTotal += 0;
 				}
 				
 				var rb4 = $(r4).find('input[type=radio]');
 				var rb4Checked = $(rb4).is(':checked');
 				if (rb4Checked) {
 					catRunningTotal += parseInt(rb4.val());
+					perCategoryRunningTotal += parseInt(rb4.val());
 				}
 				else {
 					catRunningTotal += 0;
+					perCategoryRunningTotal += 0;
 				}
 				
 				var rb3 = $(r3).find('input[type=radio]');
 				var rb3Checked = $(rb3).is(':checked');
 				if (rb3Checked) {
 					catRunningTotal += parseInt(rb3.val());
+					perCategoryRunningTotal += parseInt(rb3.val());
 				}
 				else {
 					catRunningTotal += 0;
+					perCategoryRunningTotal += 0;
 				}
 				
 				var rb2 = $(r2).find('input[type=radio]');
 				var rb2Checked = $(rb2).is(':checked');
 				if (rb2Checked) {
 					catRunningTotal += parseInt(rb2.val());
+					perCategoryRunningTotal += parseInt(rb2.val());
 				}
 				else {
 					catRunningTotal += 0;
+					perCategoryRunningTotal += 0;
 				}
 				
 				var rb1 = $(r1).find('input[type=radio]');
 				var rb1Checked = $(rb1).is(':checked');
 				if (rb1Checked) {
 					catRunningTotal += parseInt(rb1.val());
+					perCategoryRunningTotal += parseInt(rb1.val());
 				}
 				else {
 					catRunningTotal += 0;
+					perCategoryRunningTotal += 0;
 				}
+				
+				subItemCount++;
 			});
 			
-			average = catRunningTotal / count;
-			console.log(count + ' ' + average);
+			perCategoryAverage = perCategoryRunningTotal / subItemCount;
+			
+			$.ajax({
+				type: "POST",
+				url: "SavePerCategory.php",
+				data: { facultyId: facultyId, subjectId: subjectId, score: score, remarks: remarks },
+				success: function (result) {
+					if (result[0].status == 1)
+						alert(result[0].message);
+				},
+				error: function (error) {
+					console.log(error);
+				}
+			});
 			
 			count++;
 		});
 		
 		// Get Overall Evaluation Score
-		/*
 		var runningTotal = 0;
 		var remarks = "";
 		var temp = 0;
@@ -180,7 +206,6 @@ $(document).ready(function () {
 				console.log(error);
 			}
 		});
-		*/
 	});	
 });
 
