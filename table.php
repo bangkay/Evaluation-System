@@ -28,6 +28,14 @@ session_start();
 </head>
 <body>
 
+<div class = "pageHeader">
+   
+   <h1>
+      Teacher's Evaluation Form 
+      
+   </h1>
+   
+</div>
 <div style="width: 800px; margin: 0 auto;">
 	<div>
 		<input type="hidden" id="txtStudId" value="<?php echo $_SESSION['studentId']; ?>" />

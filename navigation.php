@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">ADMIN PAGE</a>
+                <a class="navbar-brand" href="AdminDashboard.php">ADMIN PAGE</a>
 				
             </div>
             <!-- Top Menu Items -->
@@ -35,6 +35,15 @@
                         <ul id="demo" class="collapse">
                             <li>
                                 <a href="teacherevaluation.php">Teacher</a>
+                            </li>
+							<li>
+                                <a href="#.php">Peer</a>
+                            </li>
+							<li>
+                                <a href="#.php">Dean</a>
+                            </li>
+							<li>
+                                <a href="#.php">Overall</a>
                             </li>
                         </ul>
                     </li>

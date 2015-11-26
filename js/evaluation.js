@@ -18,6 +18,7 @@ $(document).ready(function () {
 	$('#btnSubmit').click(function () {
 		// Get score per category
 		var count = 1;
+		var questionCount = 0;
 		var catIndex = $('#items').find('tr td p.category-header');
 		
 		var catRunningTotal = 0;
@@ -39,49 +40,59 @@ $(document).ready(function () {
 				var rb5Checked = $(rb5).is(':checked');
 				if (rb5Checked) {
 					catRunningTotal += parseInt(rb5.val());
+					questionCount++;
 				}
 				else {
 					catRunningTotal += 0;
+					questionCount++;
 				}
 				
 				var rb4 = $(r4).find('input[type=radio]');
 				var rb4Checked = $(rb4).is(':checked');
 				if (rb4Checked) {
 					catRunningTotal += parseInt(rb4.val());
+					questionCount++;
 				}
 				else {
 					catRunningTotal += 0;
+					questionCount++;
 				}
 				
 				var rb3 = $(r3).find('input[type=radio]');
 				var rb3Checked = $(rb3).is(':checked');
 				if (rb3Checked) {
 					catRunningTotal += parseInt(rb3.val());
+					questionCount++;
 				}
 				else {
 					catRunningTotal += 0;
+					questionCount++;
 				}
 				
 				var rb2 = $(r2).find('input[type=radio]');
 				var rb2Checked = $(rb2).is(':checked');
 				if (rb2Checked) {
 					catRunningTotal += parseInt(rb2.val());
+					questionCount++;
 				}
 				else {
 					catRunningTotal += 0;
+					questionCount++;
 				}
 				
 				var rb1 = $(r1).find('input[type=radio]');
 				var rb1Checked = $(rb1).is(':checked');
 				if (rb1Checked) {
 					catRunningTotal += parseInt(rb1.val());
+					questionCount++;
 				}
 				else {
 					catRunningTotal += 0;
+					questionCount++;
 				}
 			});
 			
-			average = catRunningTotal / count;
+			average = catRunningTotal / questionCount;
 			console.log(count + ' ' + average);
 			
 			count++;
